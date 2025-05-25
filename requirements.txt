@@ -1,0 +1,8 @@
+scikit-learn
+numpy
+openai
+scipy
+# Add other dependencies here, one per line
+# For example:
+# pandas
+# flask
