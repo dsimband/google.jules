@@ -5,6 +5,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import openai # Added for OpenAI API calls
 import sys # Added for sys.exit
+from dotenv import load_dotenv # Added for .env file support
 
 # --- OpenAI API Key Handling ---
 # The API key is checked within main() now.
@@ -255,10 +256,44 @@ def main():
     """
     Main function to run the RAG and LLM job review generation process.
     """
+    # Load environment variables from .env file
+    load_dotenv()
+
     # Check for OpenAI API Key
-    if not OPENAI_API_KEY_VALUE:
-        print("OpenAI API key not found. Please set the OPENAI_API_KEY environment variable.")
+    # Note: OPENAI_API_KEY_VALUE is a global variable initialized at module load time.
+    # For dotenv to reliably influence it for the initial check in main(),
+    # OPENAI_API_KEY_VALUE should ideally be re-evaluated after load_dotenv()
+    # or the check should directly use os.getenv() here.
+    # Current structure: OPENAI_API_KEY_VALUE is read once when app.py is imported.
+    # To make this robust with dotenv for the immediate check, we'll re-fetch it here.
+    # Or, ensure load_dotenv() is called before the global OPENAI_API_KEY_VALUE is defined.
+    # For this task, we'll modify the check in main to re-fetch.
+    
+    api_key_from_env = os.getenv("OPENAI_API_KEY")
+    if not api_key_from_env: # Check the value fetched *after* load_dotenv()
+        print("OpenAI API key not found. Please set the OPENAI_API_KEY environment variable or in a .env file.")
         sys.exit(1)
+    
+    # If other parts of the code rely on the global app.OPENAI_API_KEY_VALUE,
+    # it should also be updated. The call_openai_api function uses the global.
+    # This implies the global variable should be set after load_dotenv.
+    # The simplest way to ensure this is to move the global definition itself,
+    # or update it after load_dotenv(). Let's assume the current structure where
+    # OPENAI_API_KEY_VALUE is at the module level, and we'll update it in main too
+    # for consistency if other functions were to use it directly without os.getenv().
+    # However, call_openai_api already uses the global OPENAI_API_KEY_VALUE.
+    # The best practice would be:
+    # 1. Call load_dotenv() at the very top of the script, even before global constants are defined.
+    # 2. OR pass the api_key explicitly to functions needing it, fetching it in main().
+    # Given the current structure, and the task asking to put load_dotenv() in main(),
+    # the most direct impact is on os.getenv() calls. The global OPENAI_API_KEY_VALUE
+    # as defined at the top of app.py might not see the .env values if it's already been read.
+    #
+    # Let's adjust the global variable after loading, for functions that might use it.
+    # This is a workaround for the current structure.
+    global OPENAI_API_KEY_VALUE
+    OPENAI_API_KEY_VALUE = api_key_from_env
+
 
     PROJECT_DATA_DIR = "project_data"
     documents = load_documents(PROJECT_DATA_DIR)
