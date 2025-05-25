@@ -2,6 +2,7 @@ scikit-learn
 numpy
 openai
 scipy
+python-dotenv
 # Add other dependencies here, one per line
 # For example:
 # pandas

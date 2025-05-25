@@ -67,24 +67,22 @@ This application leverages the power of OpenAI's Large Language Models (LLMs), s
 
 ## Configuration
 
-1.  **Set the OpenAI API Key:**
-    The application requires an OpenAI API key to interact with the LLMs. Set this key as an environment variable.
-    *   On Linux/macOS:
+1.  **Set up OpenAI API Key:**
+    *   This project uses an `.env` file to manage the OpenAI API key, leveraging the `python-dotenv` library. This is the recommended way to handle your API key securely.
+    *   An example file `.env.example` is provided. Copy it to create your own `.env` file:
         ```bash
-        export OPENAI_API_KEY='your_api_key_here'
+        cp .env.example .env
         ```
-    *   On Windows (Command Prompt):
-        ```bash
-        set OPENAI_API_KEY=your_api_key_here
+    *   Open the newly created `.env` file (e.g., with a text editor) and add your actual OpenAI API key:
+        ```env
+        OPENAI_API_KEY="your_actual_api_key_here" 
         ```
-    *   On Windows (PowerShell):
-        ```powershell
-        $env:OPENAI_API_KEY='your_api_key_here'
-        ```
-    Replace `'your_api_key_here'` with your actual OpenAI API key.
+        Replace `"your_actual_api_key_here"` with your real API key.
+    *   **Important:** The `.env` file contains sensitive information and is included in `.gitignore` to prevent accidental commits. Do not remove it from `.gitignore`.
+    *   (Alternative) While using a `.env` file is preferred, the application will still respect the `OPENAI_API_KEY` if it's set directly as an environment variable in your system (e.g., via `export` or `set`). However, the `.env` method takes precedence if the file exists and the variable is set within it, due to the `load_dotenv()` call in `app.py`.
 
-2.  **OpenAI Account & Models:**
-    Ensure your OpenAI account associated with the API key has sufficient credits and access to the `gpt-3.5-turbo` and `gpt-4o` models.
+2.  **Ensure API Access (OpenAI Account & Models):**
+    Make sure your OpenAI account associated with the API key has sufficient credits and access to the `gpt-3.5-turbo` and `gpt-4o` models.
 
 ## Usage
 
