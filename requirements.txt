@@ -3,6 +3,9 @@ numpy
 openai
 scipy
 python-dotenv
+dash
+dash-bootstrap-components
+
 # Add other dependencies here, one per line
 # For example:
 # pandas
