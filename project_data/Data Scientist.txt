@@ -1,0 +1,17 @@
+Data Scientist
+Experience Level: Mid to Senior (3-8 years) Education: Master's or PhD in Data Science, Statistics, Mathematics, Computer Science or related field
+Key Responsibilities:
+•	Design and implement advanced analytics solutions for client problems
+•	Develop predictive models and machine learning algorithms
+•	Translate complex analyses into actionable business insights
+•	Lead data-focused workstreams within larger engagements
+•	Collaborate with consultants to integrate data-driven approaches
+•	Stay current with emerging analytical techniques and technologies
+Required Skills:
+•	Expertise in statistical analysis and machine learning
+•	Proficiency in programming languages (Python, R)
+•	Experience with data visualization tools (Tableau, Power BI)
+•	Strong problem-solving and analytical thinking
+•	Ability to translate technical concepts for non-technical audiences
+•	Understanding of business context and implications of data analysis
+

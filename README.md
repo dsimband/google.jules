@@ -77,12 +77,15 @@ This application leverages the power of OpenAI's Large Language Models (LLMs), s
         ```env
         OPENAI_API_KEY="your_actual_api_key_here" 
         ```
-    Replace `"your_actual_api_key_here"` with your real API key.
+
+        Replace `"your_actual_api_key_here"` with your real API key.
     *   **Important:** The `.env` file contains sensitive information and is included in `.gitignore` to prevent accidental commits. Do not remove it from `.gitignore`.
-    *   (Alternative) While using a `.env` file is preferred, the application will still respect the `OPENAI_API_KEY` if it's set directly as an environment variable in your system (e.g., via `export` or `set`). The `.env` method generally takes precedence if the file exists and the variable is set within it, as both `app.py` (CLI) and `dashboard_app.py` (Web App) use `load_dotenv()`.
+    *   (Alternative) While using a `.env` file is preferred, the application will still respect the `OPENAI_API_KEY` if it's set directly as an environment variable in your system (e.g., via `export` or `set`). However, the `.env` method takes precedence if the file exists and the variable is set within it, due to the `load_dotenv()` call in `app.py`.
+
 
 2.  **Ensure API Access (OpenAI Account & Models):**
     Make sure your OpenAI account associated with the API key has sufficient credits and access to the `gpt-3.5-turbo` and `gpt-4o` models.
+
 
 This configuration applies to both the Command-Line Application and the Web Application.
 
@@ -97,11 +100,13 @@ This configuration applies to both the Command-Line Application and the Web Appl
     *   Descriptions of team skills and expertise.
     *   Existing job description templates or role outlines.
 
-2.  **Run the CLI Application:**
+
+2.  **Run the Application:**
     Execute the main script from the project's root directory:
     ```bash
     python app.py
     ```
+
 
 3.  **Job Query Customization (for CLI):**
     Currently, the CLI application uses a hardcoded job query within the `main()` function in `app.py`. To generate reviews for different roles or requirements via the CLI, you will need to modify this query directly in the `app.py` script:
@@ -110,6 +115,7 @@ This configuration applies to both the Command-Line Application and the Web Appl
     job_query = "Generate a review for a senior software engineer specializing in Python and cloud technologies, requiring at least 5 years of experience and strong communication skills."
     # Change the string above to your desired query.
     ```
+
 
 ## Web Application (dashboard_app.py)
 
@@ -132,13 +138,16 @@ This project also includes a web interface built with Dash for a more interactiv
 
     The application interface allows you to enter job details in a text area and generate the review by clicking a button. The output will be displayed on the page.
 
+
 ## Running Tests
 
 The project includes unit and integration tests to ensure its components function correctly.
 
 1.  **Navigate to the Project Root Directory.**
 2.  **Run the Tests:**
+
     Ensure your virtual environment is activated and all dependencies from `requirements.txt` are installed.
+
     ```bash
     python -m unittest discover -s tests
     ```
