@@ -5,6 +5,9 @@ scipy
 python-dotenv
 dash
 dash-bootstrap-components
+mediapipe
+yt_dlp
+opencv-python
 
 # Add other dependencies here, one per line
 # For example:
